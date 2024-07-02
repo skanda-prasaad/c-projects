@@ -5,3 +5,12 @@ Rs 100 has been credited from your account
 Date and time of transcation Tue Jul 02 18:42:02 2024
 
 
+Rs 1000 has been deposited to your account
+Date and time of transaction: Tue Jul 02 19:04:17 2024
+
+Rs 1000 has been withdrawn from your account
+Date and time of transaction: Tue Jul 02 19:04:23 2024
+
+Rs 150 has been transferred to account 21
+Date and time of transaction: Tue Jul 02 19:04:32 2024
+
