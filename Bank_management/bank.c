@@ -3,7 +3,7 @@
 #include <time.h>
 
 char name[20];
-int acc_no, amt_dpt, amt = 1000;
+int acc_no, amt_dpt, amt = 1000, amt_with;
 
 void deposit_money();
 void withdraw_money();
@@ -87,19 +87,29 @@ void deposit_money()
     printf("----Money Deposited----\n");
     printf("Current balance in your account is: %d\n", amt);
     fprintf(ptr, "Rs%d has been deposited to Your account\n", amt_dpt);
-    fprintf(ptr, "Date and time of transcation %s", ctime(&tm));
+    fprintf(ptr, "Date and time of transcation %s\n", ctime(&tm));
+    getch();
 }
 
 void withdraw_money()
 {
+    time_t tm;
+    time(&tm);
+    FILE *ptr = fopen("Account.txt", "a");
     printf("--WITHDRAWING MONEY--\n");
-    // Implement the withdraw_money function here
+    printf("Enter the amount to withdraw :- ");
+    scanf("%d", &amt_with);
+    amt -= amt_with;
+    printf("AMOUNT WITHDRAWN \n");
+    printf("Current balance in your account is: %d\n", amt);
+    fprintf(ptr, "Rs %d has been credited from your account\n", amt_with);
+    fprintf(ptr, "Date and time of transcation %s\n", ctime(&tm));
+    getch();
 }
 
 void transfer_money()
 {
     printf("--TRANSFERRING MONEY--\n");
-    // Implement the transfer_money function here
 }
 
 void account_details()
