@@ -3,7 +3,7 @@
 #include <time.h>
 
 char name[20];
-int acc_no, amt_dpt, amt = 1000, amt_with, amt_transf;
+int acc_no, amt_dpt, amt = 1000, amt_with, amt_transf, count = 0;
 
 void deposit_money();
 void withdraw_money();
@@ -12,11 +12,11 @@ void account_details();
 void transaction_details();
 void exit_details();
 void menu();
+void lines();
 
 int main()
 {
     int choice;
-    printf("         ********        \n");
     printf("Enter your name: ");
     scanf("%s", name);
 
@@ -26,6 +26,7 @@ int main()
     while (1)
     {
         menu();
+        lines();
 
         printf("Enter your choice: ");
         scanf("%d", &choice);
@@ -66,12 +67,22 @@ int main()
 void menu()
 {
     printf("\n**MAIN MENU**\n");
-    printf("1. Deposit Money\n");
+    lines();
+    printf("\n1. Deposit Money\n");
     printf("2. Withdraw Money\n");
     printf("3. Transfer Money\n");
     printf("4. Account details\n");
     printf("5. Transaction details\n");
     printf("6. Exit\n");
+}
+
+void lines()
+{
+    for (int i = 0; i <= 60; i++)
+    {
+        printf("-");
+    }
+    printf("\n");
 }
 
 void deposit_money()
@@ -90,10 +101,12 @@ void deposit_money()
     scanf("%d", &amt_dpt);
     amt += amt_dpt;
     printf("----Money Deposited----\n");
+    lines();
     printf("Current balance in your account is: %d\n", amt);
     fprintf(ptr, "Rs %d has been deposited to your account\n", amt_dpt);
     fprintf(ptr, "Date and time of transaction: %s\n", ctime(&tm));
     fclose(ptr);
+    count++;
 }
 
 void withdraw_money()
@@ -110,11 +123,20 @@ void withdraw_money()
     printf("--WITHDRAWING MONEY--\n");
     printf("Enter the amount to withdraw: ");
     scanf("%d", &amt_with);
-    amt -= amt_with;
-    printf("AMOUNT WITHDRAWN\n");
-    printf("Current balance in your account is: %d\n", amt);
-    fprintf(ptr, "Rs %d has been withdrawn from your account\n", amt_with);
-    fprintf(ptr, "Date and time of transaction: %s\n", ctime(&tm));
+    if (amt_with > amt)
+    {
+        printf("Insufficient balance...!\n");
+    }
+    else
+    {
+        amt -= amt_with;
+        printf("AMOUNT WITHDRAWN\n");
+        lines();
+        printf("Current balance in your account is: %d\n", amt);
+        fprintf(ptr, "Rs %d has been withdrawn from your account\n", amt_with);
+        fprintf(ptr, "Date and time of transaction: %s\n", ctime(&tm));
+        count++;
+    }
     fclose(ptr);
 }
 
@@ -143,9 +165,11 @@ void transfer_money()
     {
         amt -= amt_transf;
         printf("--AMOUNT TRANSFERRED--\n");
+        lines();
         printf("Current balance in your account is: %d\n", amt);
         fprintf(ptr, "Rs %d has been transferred to account %d\n", amt_transf, ac);
         fprintf(ptr, "Date and time of transaction: %s\n", ctime(&tm));
+        count++;
     }
     fclose(ptr);
 }
@@ -156,6 +180,7 @@ void account_details()
     printf("Name: %s\n", name);
     printf("Account Number: %d\n", acc_no);
     printf("Current Balance: %d\n", amt);
+    printf("Number of transactions made through this account: %d\n", count);
 }
 
 void transaction_details()
