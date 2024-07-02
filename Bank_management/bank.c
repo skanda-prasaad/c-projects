@@ -179,4 +179,7 @@ void transaction_details()
 void exit_details()
 {
     printf("--EXITING--\n");
+    printf("Name: %s\n", name);
+    printf("Account Number: %d\n", acc_no);
+    printf("Current Balance: %d\n", amt);
 }
