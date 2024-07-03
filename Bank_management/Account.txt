@@ -32,3 +32,6 @@ Date and time of transaction: Wed Jul 03 14:05:36 2024
 Rs 100 has been transferred to account 23
 Date and time of transaction: Wed Jul 03 14:05:52 2024
 
+Rs 200 has been withdrawn from your account
+Date and time of transaction: Wed Jul 03 17:47:52 2024
+
